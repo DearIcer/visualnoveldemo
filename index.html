@@ -83,7 +83,7 @@ body {
 }
 #hero .hero-bg {
   position: absolute; inset: 0;
-  background: url("../assets/backgrounds/title.png") center / cover no-repeat;
+  background: url("assets/backgrounds/title.png") center / cover no-repeat;
   transform: scale(1.06);
   animation: hero-breathe 18s ease-in-out infinite alternate;
 }
@@ -448,21 +448,21 @@ footer .foot-tech { margin-top: 20px; font-size: 12px; color: #5c564b; letter-sp
   <p class="section-sub reveal">入宅者 · 守宅者 · 非人者</p>
   <div class="char-grid">
     <div class="char-card reveal">
-      <div class="char-portrait"><img src="../assets/characters/a_wan/normal.png" alt="阿纨"></div>
+      <div class="char-portrait"><img src="assets/characters/a_wan/normal.png" alt="阿纨"></div>
       <div class="char-info">
         <h3 class="char-name">阿纨<small>神秘的守灵女子</small></h3>
         <p class="char-desc">守灵夜里出现在灵堂的年轻女子，自称是受了老夫人恩情前来还愿。她认得宅子里每一条回廊，却没人说得清她从何而来。烛火映着她的侧脸时，总让人觉得似曾相识。</p>
       </div>
     </div>
     <div class="char-card reveal">
-      <div class="char-portrait"><img src="../assets/characters/fubo/normal.png" alt="福伯"></div>
+      <div class="char-portrait"><img src="assets/characters/fubo/normal.png" alt="福伯"></div>
       <div class="char-info">
         <h3 class="char-name">福伯<small>老宅的仆佣</small></h3>
         <p class="char-desc">伺候了老夫人一辈子的老仆，代笔写下了那封报丧的家书。他提灯的手总在发抖，浑浊的眼睛里像藏着许多没说完的话——关于这座宅子，也关于祖母的亡故。</p>
       </div>
     </div>
     <div class="char-card reveal">
-      <div class="char-portrait"><img src="../assets/characters/paper/normal.png" alt="？？？"></div>
+      <div class="char-portrait"><img src="assets/characters/paper/normal.png" alt="？？？"></div>
       <div class="char-info">
         <h3 class="char-name">？？？<small>纸扎的人</small></h3>
         <p class="char-desc">纸屋里立着的东西。惨白的脸，鲜红的唇，是丧事上烧给亡人的纸扎。可福伯说，老夫人走后，它的位置……每天都会变。不要盯着它的眼睛看太久。</p>
@@ -541,17 +541,17 @@ footer .foot-tech { margin-top: 20px; font-size: 12px; color: #5c564b; letter-sp
 /* ========== 画廊数据 ========== */
 (function () {
   const scenes = [
-    { src: '../assets/backgrounds/village_road.png', cap: '槐荫村道' },
-    { src: '../assets/backgrounds/mansion_gate.png', cap: '老宅正门' },
-    { src: '../assets/backgrounds/courtyard.png',    cap: '庭院深深' },
-    { src: '../assets/backgrounds/spirit_hall.png',  cap: '灵堂白烛' },
-    { src: '../assets/backgrounds/corridor.png',     cap: '夜半回廊' },
-    { src: '../assets/backgrounds/study.png',        cap: '蒙尘书房' },
-    { src: '../assets/backgrounds/bedroom.png',      cap: '旧日卧房' },
-    { src: '../assets/backgrounds/paper_room.png',   cap: '纸屋' },
-    { src: '../assets/backgrounds/cg_umbrella.png',  cap: 'CG · 伞下', cg: true },
-    { src: '../assets/backgrounds/cg_mirror.png',    cap: 'CG · 铜镜', cg: true },
-    { src: '../assets/backgrounds/cg_fire.png',      cap: 'CG · 焚灯', cg: true }
+    { src: 'assets/backgrounds/village_road.png', cap: '槐荫村道' },
+    { src: 'assets/backgrounds/mansion_gate.png', cap: '老宅正门' },
+    { src: 'assets/backgrounds/courtyard.png',    cap: '庭院深深' },
+    { src: 'assets/backgrounds/spirit_hall.png',  cap: '灵堂白烛' },
+    { src: 'assets/backgrounds/corridor.png',     cap: '夜半回廊' },
+    { src: 'assets/backgrounds/study.png',        cap: '蒙尘书房' },
+    { src: 'assets/backgrounds/bedroom.png',      cap: '旧日卧房' },
+    { src: 'assets/backgrounds/paper_room.png',   cap: '纸屋' },
+    { src: 'assets/backgrounds/cg_umbrella.png',  cap: 'CG · 伞下', cg: true },
+    { src: 'assets/backgrounds/cg_mirror.png',    cap: 'CG · 铜镜', cg: true },
+    { src: 'assets/backgrounds/cg_fire.png',      cap: 'CG · 焚灯', cg: true }
   ];
   const grid = document.getElementById('gallery-grid');
   const lightbox = document.getElementById('lightbox');
