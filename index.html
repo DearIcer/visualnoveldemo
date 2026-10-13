@@ -356,6 +356,84 @@ body {
 }
 .feat-desc { margin-top: 10px; font-size: 13px; color: var(--text-dim); line-height: 1.8; }
 
+/* ========== 获取游戏 ========== */
+#download {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(168, 35, 47, 0.10) 0%, transparent 55%),
+    #100d10;
+  text-align: center;
+}
+.dl-card {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 48px 40px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55), 0 0 40px rgba(168, 35, 47, 0.08);
+}
+.dl-platform {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  letter-spacing: 6px;
+  color: var(--accent-2);
+}
+.dl-link-row {
+  margin-top: 26px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.dl-btn {
+  display: inline-block;
+  padding: 14px 38px;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  letter-spacing: 6px;
+  color: #f0e6cf;
+  background: linear-gradient(180deg, rgba(168, 35, 47, 0.85) 0%, rgba(120, 20, 28, 0.9) 100%);
+  border: 1px solid rgba(216, 182, 106, 0.35);
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: filter 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+.dl-btn:hover {
+  filter: brightness(1.15);
+  box-shadow: 0 0 26px rgba(168, 35, 47, 0.45);
+  transform: translateY(-2px);
+}
+.dl-btn.ghost {
+  background: rgba(216, 210, 195, 0.06);
+  border-color: rgba(216, 210, 195, 0.2);
+  color: var(--text);
+}
+.dl-code {
+  margin-top: 24px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+}
+.dl-code b {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  letter-spacing: 8px;
+  color: var(--accent-2);
+  margin-left: 10px;
+  text-shadow: 0 0 14px rgba(216, 182, 106, 0.35);
+}
+.dl-hint { margin-top: 18px; font-size: 12px; color: #5c564b; letter-spacing: 2px; }
+.dl-copied {
+  margin-top: 10px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #7fae7a;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.dl-copied.show { opacity: 1; }
+
 /* ========== 页脚 ========== */
 footer {
   border-top: 1px solid rgba(216, 210, 195, 0.08);
@@ -424,6 +502,7 @@ footer .foot-tech { margin-top: 20px; font-size: 12px; color: #5c564b; letter-sp
       <span>视觉小说</span>
       <span>三结局</span>
     </p>
+    <p style="margin-top: 42px;"><a class="dl-btn" href="#download">获 取 游 戏</a></p>
   </div>
 
   <div class="scroll-hint">向下滚动</div>
@@ -506,6 +585,22 @@ footer .foot-tech { margin-top: 20px; font-size: 12px; color: #5c564b; letter-sp
   </div>
 </section>
 
+<!-- ========== 获取游戏 ========== -->
+<section id="download" class="section">
+  <h2 class="section-title reveal">获取游戏</h2>
+  <p class="section-sub reveal">网盘分发 · 免费下载</p>
+  <div class="dl-card reveal">
+    <p class="dl-platform">百度网盘 · Windows</p>
+    <div class="dl-link-row">
+      <a class="dl-btn" href="https://pan.baidu.com/s/1S5ofwaOZpAJPQSbv_cshpA" target="_blank" rel="noopener">前往网盘</a>
+      <button class="dl-btn ghost" id="copy-link">复制链接与提取码</button>
+    </div>
+    <p class="dl-code">提取码<b>44c6</b></p>
+    <p class="dl-copied" id="copied-tip">已复制到剪贴板</p>
+    <p class="dl-hint">下载解压后即可运行 · 需安装 WebView2 Runtime（Win10/11 通常自带）</p>
+  </div>
+</section>
+
 <!-- ========== 页脚 ========== -->
 <footer>
   <p class="foot-title">青 灯 引</p>
@@ -581,6 +676,32 @@ footer .foot-tech { margin-top: 20px; font-size: 12px; color: #5c564b; letter-sp
   lightbox.addEventListener('click', () => lightbox.classList.remove('open'));
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') lightbox.classList.remove('open');
+  });
+})();
+
+/* ========== 复制网盘链接 ========== */
+(function () {
+  const btn = document.getElementById('copy-link');
+  const tip = document.getElementById('copied-tip');
+  const TEXT = '通过网盘分享的文件：青灯引\n链接: https://pan.baidu.com/s/1S5ofwaOZpAJPQSbv_cshpA 提取码: 44c6';
+  btn.addEventListener('click', () => {
+    const done = () => {
+      tip.classList.add('show');
+      setTimeout(() => tip.classList.remove('show'), 2000);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(TEXT).then(done).catch(() => fallback());
+    } else {
+      fallback();
+    }
+    function fallback() {
+      const ta = document.createElement('textarea');
+      ta.value = TEXT;
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); done(); } catch (e) {}
+      document.body.removeChild(ta);
+    }
   });
 })();
 
